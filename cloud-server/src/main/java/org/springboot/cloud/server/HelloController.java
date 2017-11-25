@@ -5,6 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author Eric Zhao
+ * @date 2017/11/25
+ */
 @RestController
 public class HelloController {
 
