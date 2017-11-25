@@ -17,13 +17,33 @@ public class HelloCommand implements CommandLineRunner {
     @Autowired
     HelloClient helloClient;
 
+    @Autowired
+    HelloService helloService;
+
     @Override
     public void run(String... args) {
-        for (int i = 0; i < 1000; i++) {
+       callHelloClient();
+       callHelloService();
+    }
+    private void callHelloClient() {
+        for (int i = 0; i < 3; i++) {
             String res = helloClient.hello("test");
-            logger.info("received {}", res);
+            logger.info("client received {}", res);
             try {
                 Thread.sleep(100);
+            } catch (Exception e) {
+                logger.warn("exception {}", e);
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    private void callHelloService() {
+        for (int i = 0; i < 1000; i++) {
+            String res = helloService.hello("test");
+            logger.info("service received {}", res);
+            try {
+                Thread.sleep(1000);
             } catch (Exception e) {
                 logger.warn("exception {}", e);
                 Thread.currentThread().interrupt();

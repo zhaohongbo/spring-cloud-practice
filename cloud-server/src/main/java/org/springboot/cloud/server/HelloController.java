@@ -17,6 +17,12 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(String name) {
         logger.info("received {}", name);
+        try {
+            Thread.sleep(100);
+        } catch (Exception e) {
+            logger.warn("exception {}", e);
+            Thread.currentThread().interrupt();
+        }
         return "hello " + name;
     }
 }

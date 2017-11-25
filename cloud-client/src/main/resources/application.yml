@@ -2,8 +2,14 @@ eureka:
   client:
     service-url:
       default-zone: http://localhost:8761/eureka/
+hello-server:
+  ribbon:
+    connect-timeout: 500
 spring:
   application:
     name: hello-client
 server:
   port: 9092
+feign:
+  hystrix:
+    enabled: true
